@@ -924,26 +924,26 @@
                         <strong>Sincroniza tus productos entre dispositivos:</strong>
                     </p>
                     <p style="margin-bottom: 0; font-size: 0.9rem; color: #0288d1;">
-                        Exporta todos tus productos, configuración y galería para compartir o respaldar. 
-                        Importa datos desde otro dispositivo o respaldo.
+                        Genera un código de 6 caracteres para compartir fácilmente por WhatsApp, SMS o cualquier método. 
+                        Los códigos expiran en 24 horas por seguridad.
                     </p>
                 </div>
 
                 <div class="form-grid" style="margin-bottom: 2rem;">
                     <div class="form-group">
                         <button type="button" class="btn-success" onclick="exportData()" style="width: 100%;">
-                            <i class="fas fa-download"></i> Exportar Todos los Datos
+                            <i class="fas fa-download"></i> Generar Código de Sincronización
                         </button>
                         <small style="color: #666; display: block; margin-top: 0.5rem;">
-                            Genera un enlace para compartir todos tus datos
+                            Genera un código corto para compartir por WhatsApp
                         </small>
                     </div>
                     <div class="form-group">
-                        <button type="button" class="btn-warning" onclick="showImportDialog()" style="width: 100%;">
-                            <i class="fas fa-upload"></i> Importar Datos
+                        <button type="button" class="btn-info" onclick="window.open('sync.html', '_blank')" style="width: 100%;">
+                            <i class="fas fa-sync-alt"></i> Página de Sincronización
                         </button>
                         <small style="color: #666; display: block; margin-top: 0.5rem;">
-                            Importa datos desde un enlace de exportación
+                            Abre la página para ingresar códigos de sincronización
                         </small>
                     </div>
                 </div>
@@ -952,7 +952,7 @@
                 <div id="export-modal" class="modal" style="display: none;">
                     <div class="modal-content" style="max-width: 600px;">
                         <div class="modal-header">
-                            <h3><i class="fas fa-share-alt"></i> Datos Exportados</h3>
+                            <h3><i class="fas fa-share-alt"></i> Código de Sincronización Generado</h3>
                             <span class="close" onclick="closeExportModal()">&times;</span>
                         </div>
                         <div class="modal-body">
@@ -966,9 +966,13 @@
                                 </div>
                             </div>
                             <div style="background: #fff3cd; padding: 1rem; border-radius: 8px; border: 1px solid #ffeaa7;">
+                                <p style="margin-bottom: 0.5rem; color: #856404; font-size: 0.9rem;">
+                                    <i class="fas fa-clock"></i>
+                                    <strong>El código expira en 24 horas</strong>
+                                </p>
                                 <p style="margin: 0; color: #856404; font-size: 0.9rem;">
-                                    <i class="fas fa-exclamation-triangle"></i>
-                                    <strong>Importante:</strong> Este enlace contiene todos tus datos. Compártelo solo con dispositivos de confianza.
+                                    <i class="fas fa-mobile-alt"></i>
+                                    Perfecto para compartir por WhatsApp o SMS
                                 </p>
                             </div>
                         </div>

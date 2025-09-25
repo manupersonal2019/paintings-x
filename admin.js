@@ -1428,26 +1428,96 @@ function exportData() {
             version: '1.0'
         };
         
-        // Convertir a JSON y codificar en base64
-        const dataString = JSON.stringify(allData);
-        const encodedData = btoa(dataString);
+        // Generar código corto de 6 caracteres
+        const syncCode = generateSyncCode();
         
-        // Crear URL con los datos
+        // Guardar los datos con el código en localStorage
+        localStorage.setItem('syncData_' + syncCode, JSON.stringify(allData));
+        
+        // Crear URL corta con el código
         const currentUrl = window.location.href;
         const baseUrl = currentUrl.replace('/admin.html', '');
-        const syncUrl = `${baseUrl}?import=${encodedData}`;
+        const syncUrl = `${baseUrl}/sync.html?code=${syncCode}`;
         
-        // Mostrar modal con el enlace
+        // Mostrar modal con el código y enlace
         document.getElementById('export-url').value = syncUrl;
+        
+        // Agregar información del código
+        const modalBody = document.querySelector('#export-modal .modal-body');
+        const codeInfo = modalBody.querySelector('.code-info');
+        
+        if (codeInfo) {
+            codeInfo.remove();
+        }
+        
+        const codeDiv = document.createElement('div');
+        codeDiv.className = 'code-info';
+        codeDiv.style.cssText = 'background: #e8f5e8; padding: 1rem; border-radius: 8px; margin: 1rem 0; text-align: center;';
+        codeDiv.innerHTML = `
+            <h4 style="color: #2d5a2d; margin-bottom: 0.5rem;">
+                <i class="fas fa-key"></i> Código de Sincronización
+            </h4>
+            <div style="font-size: 2rem; font-weight: bold; color: #2d5a2d; letter-spacing: 3px; margin: 0.5rem 0;">
+                ${syncCode}
+            </div>
+            <p style="color: #2d5a2d; font-size: 0.9rem; margin: 0;">
+                También puedes usar solo este código en sync.html
+            </p>
+        `;
+        
+        modalBody.insertBefore(codeDiv, modalBody.firstChild);
+        
         document.getElementById('export-modal').style.display = 'block';
         
-        showNotification('Datos exportados correctamente', 'success');
-        console.log('✅ Datos exportados:', allData);
+        showNotification('Código generado: ' + syncCode + ' (válido por 24 horas)', 'success');
+        console.log('✅ Datos exportados con código:', syncCode, allData);
+        
+        // Limpiar códigos expirados
+        cleanExpiredCodes();
         
     } catch (error) {
         console.error('❌ Error al exportar datos:', error);
         showNotification('Error al exportar datos: ' + error.message, 'error');
     }
+}
+
+function generateSyncCode() {
+    const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+    let result = '';
+    for (let i = 0; i < 6; i++) {
+        result += chars.charAt(Math.floor(Math.random() * chars.length));
+    }
+    
+    // Verificar que no exista ya
+    if (localStorage.getItem('syncData_' + result)) {
+        return generateSyncCode(); // Regenerar si existe
+    }
+    
+    return result;
+}
+
+function cleanExpiredCodes() {
+    const keys = Object.keys(localStorage);
+    const now = new Date();
+    
+    keys.forEach(key => {
+        if (key.startsWith('syncData_')) {
+            try {
+                const data = JSON.parse(localStorage.getItem(key));
+                const createdAt = new Date(data.timestamp);
+                const hoursDiff = (now - createdAt) / (1000 * 60 * 60);
+                
+                // Eliminar códigos de más de 24 horas
+                if (hoursDiff > 24) {
+                    localStorage.removeItem(key);
+                    console.log('🧹 Código expirado eliminado:', key.replace('syncData_', ''));
+                }
+            } catch (error) {
+                // Si hay error al parsear, eliminar la clave
+                localStorage.removeItem(key);
+            }
+        }
+    });
 }
 
 function showImportDialog() {
