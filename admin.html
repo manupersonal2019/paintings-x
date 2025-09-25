@@ -913,6 +913,93 @@
                     </button>
                 </form>
 
+                <!-- Sección de Sincronización -->
+                <h3 style="margin: 3rem 0 1rem 0; color: #333; border-bottom: 2px solid #17a2b8; padding-bottom: 0.5rem;">
+                    <i class="fas fa-sync-alt"></i> Sincronización de Datos
+                </h3>
+                
+                <div style="background: #e1f5fe; padding: 1.5rem; border-radius: 8px; margin-bottom: 1.5rem;">
+                    <p style="margin-bottom: 1rem; color: #0277bd;">
+                        <i class="fas fa-info-circle"></i> 
+                        <strong>Sincroniza tus productos entre dispositivos:</strong>
+                    </p>
+                    <p style="margin-bottom: 0; font-size: 0.9rem; color: #0288d1;">
+                        Exporta todos tus productos, configuración y galería para compartir o respaldar. 
+                        Importa datos desde otro dispositivo o respaldo.
+                    </p>
+                </div>
+
+                <div class="form-grid" style="margin-bottom: 2rem;">
+                    <div class="form-group">
+                        <button type="button" class="btn-success" onclick="exportData()" style="width: 100%;">
+                            <i class="fas fa-download"></i> Exportar Todos los Datos
+                        </button>
+                        <small style="color: #666; display: block; margin-top: 0.5rem;">
+                            Genera un enlace para compartir todos tus datos
+                        </small>
+                    </div>
+                    <div class="form-group">
+                        <button type="button" class="btn-warning" onclick="showImportDialog()" style="width: 100%;">
+                            <i class="fas fa-upload"></i> Importar Datos
+                        </button>
+                        <small style="color: #666; display: block; margin-top: 0.5rem;">
+                            Importa datos desde un enlace de exportación
+                        </small>
+                    </div>
+                </div>
+
+                <!-- Modal de Exportación -->
+                <div id="export-modal" class="modal" style="display: none;">
+                    <div class="modal-content" style="max-width: 600px;">
+                        <div class="modal-header">
+                            <h3><i class="fas fa-share-alt"></i> Datos Exportados</h3>
+                            <span class="close" onclick="closeExportModal()">&times;</span>
+                        </div>
+                        <div class="modal-body">
+                            <div style="background: #f8f9fa; padding: 1rem; border-radius: 8px; margin-bottom: 1rem;">
+                                <p style="margin-bottom: 1rem;"><strong>Comparte este enlace:</strong></p>
+                                <div style="display: flex; gap: 0.5rem; align-items: center;">
+                                    <input type="text" id="export-url" readonly style="flex: 1; padding: 0.75rem; border: 1px solid #ddd; border-radius: 4px; background: white;">
+                                    <button onclick="copyExportUrl()" class="btn-primary" style="padding: 0.75rem 1rem;">
+                                        <i class="fas fa-copy"></i> Copiar
+                                    </button>
+                                </div>
+                            </div>
+                            <div style="background: #fff3cd; padding: 1rem; border-radius: 8px; border: 1px solid #ffeaa7;">
+                                <p style="margin: 0; color: #856404; font-size: 0.9rem;">
+                                    <i class="fas fa-exclamation-triangle"></i>
+                                    <strong>Importante:</strong> Este enlace contiene todos tus datos. Compártelo solo con dispositivos de confianza.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Modal de Importación -->
+                <div id="import-modal" class="modal" style="display: none;">
+                    <div class="modal-content" style="max-width: 500px;">
+                        <div class="modal-header">
+                            <h3><i class="fas fa-upload"></i> Importar Datos</h3>
+                            <span class="close" onclick="closeImportModal()">&times;</span>
+                        </div>
+                        <div class="modal-body">
+                            <div class="form-group">
+                                <label for="import-url">Enlace de datos exportados:</label>
+                                <input type="url" id="import-url" placeholder="Pega aquí el enlace de exportación" style="width: 100%; padding: 0.75rem; border: 1px solid #ddd; border-radius: 4px;">
+                            </div>
+                            <div style="background: #f8d7da; padding: 1rem; border-radius: 8px; margin-bottom: 1rem;">
+                                <p style="margin: 0; color: #721c24; font-size: 0.9rem;">
+                                    <i class="fas fa-exclamation-circle"></i>
+                                    <strong>Atención:</strong> Esto reemplazará todos tus datos actuales.
+                                </p>
+                            </div>
+                            <button onclick="importData()" class="btn-warning" style="width: 100%;">
+                                <i class="fas fa-upload"></i> Importar Datos
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
                 <div style="margin-top: 2rem; padding: 1.5rem; background: #f8d7da; border-radius: 8px;">
                     <h4 style="color: #721c24; margin-bottom: 1rem;">
                         <i class="fas fa-key"></i> Cambiar Contraseña de Administrador

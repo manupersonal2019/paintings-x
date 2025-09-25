@@ -1405,7 +1405,171 @@ window.saveSocialMedia = saveSocialMedia;
 window.loadSocialMedia = loadSocialMedia;
 window.handleMediaPreview = handleMediaPreview;
 
+// Funciones de Sincronización
+window.exportData = exportData;
+window.importData = importData;
+window.showImportDialog = showImportDialog;
+window.closeExportModal = closeExportModal;
+window.closeImportModal = closeImportModal;
+window.copyExportUrl = copyExportUrl;
+
+// ===== FUNCIONES DE SINCRONIZACIÓN =====
+
+function exportData() {
+    try {
+        // Recopilar todos los datos
+        const allData = {
+            products: JSON.parse(localStorage.getItem('paintingsxProducts') || '[]'),
+            mainSiteData: JSON.parse(localStorage.getItem('laminas_main_site_data') || '{}'),
+            gallery: JSON.parse(localStorage.getItem('paintingsxGallery') || '[]'),
+            config: JSON.parse(localStorage.getItem('paintingsxConfig') || '{}'),
+            socialMedia: JSON.parse(localStorage.getItem('paintingsxSocialMedia') || '{}'),
+            timestamp: new Date().toISOString(),
+            version: '1.0'
+        };
+        
+        // Convertir a JSON y codificar en base64
+        const dataString = JSON.stringify(allData);
+        const encodedData = btoa(dataString);
+        
+        // Crear URL con los datos
+        const currentUrl = window.location.href;
+        const baseUrl = currentUrl.replace('/admin.html', '');
+        const syncUrl = `${baseUrl}?import=${encodedData}`;
+        
+        // Mostrar modal con el enlace
+        document.getElementById('export-url').value = syncUrl;
+        document.getElementById('export-modal').style.display = 'block';
+        
+        showNotification('Datos exportados correctamente', 'success');
+        console.log('✅ Datos exportados:', allData);
+        
+    } catch (error) {
+        console.error('❌ Error al exportar datos:', error);
+        showNotification('Error al exportar datos: ' + error.message, 'error');
+    }
+}
+
+function showImportDialog() {
+    document.getElementById('import-modal').style.display = 'block';
+}
+
+function importData() {
+    const importUrl = document.getElementById('import-url').value.trim();
+    
+    if (!importUrl) {
+        showNotification('Por favor, ingresa un enlace válido', 'error');
+        return;
+    }
+    
+    try {
+        // Extraer datos del URL
+        const url = new URL(importUrl);
+        const importParam = url.searchParams.get('import');
+        
+        if (!importParam) {
+            showNotification('El enlace no contiene datos válidos', 'error');
+            return;
+        }
+        
+        // Decodificar los datos
+        const decodedData = atob(importParam);
+        const importedData = JSON.parse(decodedData);
+        
+        // Validar estructura
+        if (!importedData.version || !importedData.timestamp) {
+            showNotification('Formato de datos no válido', 'error');
+            return;
+        }
+        
+        // Confirmar importación
+        if (!confirm('¿Estás seguro de que quieres importar estos datos? Esto reemplazará toda la información actual.')) {
+            return;
+        }
+        
+        // Importar cada tipo de datos
+        if (importedData.products) {
+            localStorage.setItem('paintingsxProducts', JSON.stringify(importedData.products));
+            products = importedData.products;
+        }
+        
+        if (importedData.mainSiteData) {
+            localStorage.setItem('laminas_main_site_data', JSON.stringify(importedData.mainSiteData));
+        }
+        
+        if (importedData.gallery) {
+            localStorage.setItem('paintingsxGallery', JSON.stringify(importedData.gallery));
+        }
+        
+        if (importedData.config) {
+            localStorage.setItem('paintingsxConfig', JSON.stringify(importedData.config));
+        }
+        
+        if (importedData.socialMedia) {
+            localStorage.setItem('paintingsxSocialMedia', JSON.stringify(importedData.socialMedia));
+        }
+        
+        // Recargar la página para aplicar los cambios
+        showNotification('Datos importados correctamente. Recargando página...', 'success');
+        
+        setTimeout(() => {
+            window.location.reload();
+        }, 1500);
+        
+        console.log('✅ Datos importados correctamente:', importedData);
+        
+    } catch (error) {
+        console.error('❌ Error al importar datos:', error);
+        showNotification('Error al importar datos: ' + error.message, 'error');
+    }
+}
+
+function closeExportModal() {
+    document.getElementById('export-modal').style.display = 'none';
+}
+
+function closeImportModal() {
+    document.getElementById('import-modal').style.display = 'none';
+    document.getElementById('import-url').value = '';
+}
+
+function copyExportUrl() {
+    const exportUrl = document.getElementById('export-url');
+    exportUrl.select();
+    exportUrl.setSelectionRange(0, 99999); // Para móviles
+    
+    try {
+        document.execCommand('copy');
+        showNotification('Enlace copiado al portapapeles', 'success');
+    } catch (error) {
+        console.log('❌ Error al copiar:', error);
+        showNotification('No se pudo copiar automáticamente. Copia manualmente el enlace.', 'info');
+    }
+}
+
+// Auto-importar si hay parámetro en la URL
+document.addEventListener('DOMContentLoaded', function() {
+    const urlParams = new URLSearchParams(window.location.search);
+    const importParam = urlParams.get('import');
+    
+    if (importParam) {
+        try {
+            const decodedData = atob(importParam);
+            const importedData = JSON.parse(decodedData);
+            
+            if (confirm('Se han detectado datos para importar. ¿Deseas importarlos ahora?')) {
+                // Simular click en importar con los datos ya en la URL
+                document.getElementById('import-url').value = window.location.href;
+                importData();
+            }
+        } catch (error) {
+            console.log('❌ Error al procesar datos de importación automática:', error);
+        }
+    }
+});
+
 // Inicialización automática
 console.log('🔧 Panel de Administrador inicializado');
 console.log('📊 Sistema de gestión de productos activo');
+console.log('🔄 Sistema de sincronización activo');
 console.log('📋 Sistema de gestión de pedidos activo');
