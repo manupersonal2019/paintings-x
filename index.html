@@ -749,7 +749,7 @@
         <!-- Productos Section -->
         <section id="productos" class="products">
             <div class="container">
-                <h2>Nuestros Productos</h2>
+                <h2>Nuestros Productos ✨</h2>
                 <p style="text-align: center; font-size: 1.2rem; color: #666; margin-bottom: 2rem;">
                     🚚 <strong>Envío Nacional GRATIS</strong> en toda El Salvador
                 </p>
@@ -1077,21 +1077,29 @@
         // Cargar productos desde el panel de administrador
         function loadProductsFromAdmin() {
             console.log('🔍 === INICIANDO loadProductsFromAdmin ===');
+            console.log('🔍 User Agent:', navigator.userAgent);
             console.log('🔍 Verificando localStorage...');
             
             try {
+                // Verificar si localStorage está disponible
+                if (typeof(Storage) === "undefined") {
+                    console.error('❌ LocalStorage no soportado en este navegador');
+                    return;
+                }
+                
                 // Listar todas las claves de localStorage para debug
                 var allKeys = [];
                 for (var i = 0; i < localStorage.length; i++) {
                     allKeys.push(localStorage.key(i));
                 }
                 console.log('🔑 Todas las claves en localStorage:', allKeys);
+                console.log('🔑 Total claves:', localStorage.length);
                 
                 var adminData = localStorage.getItem('laminas_main_site_data');
                 console.log('🔍 Buscando datos del admin con clave "laminas_main_site_data":', !!adminData);
-                console.log('📄 Contenido crudo:', adminData);
                 
                 if (adminData) {
+                    console.log('📄 Longitud de datos:', adminData.length);
                     var data = JSON.parse(adminData);
                     console.log('📦 Datos parseados encontrados:', data);
                     console.log('📦 data.products:', data.products);
@@ -1114,14 +1122,21 @@
                         updateProductsDisplay();
                     } else {
                         console.log('⚠️ No se encontraron productos en los datos del admin');
-                        console.log('⚠️ data.products es:', data.products);
+                        console.log('⚠️ Mostrando productos de respaldo');
+                        // Usar productos de respaldo si no hay datos del admin
+                        updateProductsDisplay();
                     }
                 } else {
                     console.log('❌ No se encontraron datos del admin en localStorage');
-                    console.log('❌ localStorage.getItem("laminas_main_site_data") retornó:', adminData);
+                    console.log('❌ Mostrando productos de respaldo');
+                    // Usar productos de respaldo
+                    updateProductsDisplay();
                 }
             } catch (error) {
                 console.error('❌ Error en loadProductsFromAdmin:', error);
+                console.error('❌ Stack trace:', error.stack);
+                // Usar productos de respaldo en caso de error
+                updateProductsDisplay();
             }
             
             // Cargar galería
