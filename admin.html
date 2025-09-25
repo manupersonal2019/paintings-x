@@ -1,0 +1,936 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panel de Administrador - Láminas de Aluminio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            background: #f8f9fa;
+            color: #333;
+        }
+
+        .admin-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 1rem 0;
+            text-align: center;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .admin-header h1 {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .admin-nav {
+            background: white;
+            padding: 1rem 0;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            margin-bottom: 2rem;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            gap: 2rem;
+            padding: 0 2rem;
+        }
+
+        .nav-btn {
+            background: #667eea;
+            color: white;
+            border: none;
+            padding: 0.8rem 1.5rem;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .nav-btn:hover {
+            background: #5a6fd8;
+            transform: translateY(-2px);
+        }
+
+        .nav-btn.active {
+            background: #28a745;
+        }
+
+        .admin-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .admin-section {
+            display: none;
+            background: white;
+            border-radius: 15px;
+            padding: 2rem;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            margin-bottom: 2rem;
+        }
+
+        .admin-section.active {
+            display: block;
+        }
+
+        .section-title {
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            color: #333;
+            border-bottom: 3px solid #667eea;
+            padding-bottom: 0.5rem;
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .form-group {
+            margin-bottom: 1rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+            color: #333;
+        }
+
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 0.8rem;
+            border: 2px solid #e9ecef;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #28a745, #20c997);
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary:hover {
+            background: linear-gradient(135deg, #20c997, #28a745);
+            transform: translateY(-2px);
+        }
+
+        .btn-danger {
+            background: linear-gradient(135deg, #dc3545, #c82333);
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .btn-danger:hover {
+            background: linear-gradient(135deg, #c82333, #dc3545);
+        }
+
+        .products-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .product-admin-card {
+            border: 2px solid #e9ecef;
+            border-radius: 10px;
+            padding: 1.5rem;
+            background: #f8f9fa;
+            transition: all 0.3s ease;
+        }
+
+        .product-admin-card:hover {
+            border-color: #667eea;
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.1);
+        }
+
+        .product-image-preview {
+            width: 100%;
+            height: 150px;
+            border: 2px dashed #ccc;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            background-size: cover;
+            background-position: center;
+        }
+
+        .product-image-preview:hover {
+            border-color: #667eea;
+            background-color: #f8f9ff;
+        }
+
+        .product-image-preview.has-image {
+            border-style: solid;
+            border-color: #28a745;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .stat-card {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            padding: 1.5rem;
+            border-radius: 10px;
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            font-size: 1rem;
+            opacity: 0.9;
+        }
+
+        .orders-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 1rem;
+        }
+
+        .orders-table th,
+        .orders-table td {
+            text-align: left;
+            padding: 1rem;
+            border-bottom: 1px solid #e9ecef;
+        }
+
+        .orders-table th {
+            background: #f8f9fa;
+            font-weight: 600;
+            color: #333;
+        }
+
+        .status-badge {
+            padding: 0.3rem 0.8rem;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        .status-pending {
+            background: #fff3cd;
+            color: #856404;
+        }
+
+        .status-completed {
+            background: #d4edda;
+            color: #155724;
+        }
+
+        .notification {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            padding: 1rem 1.5rem;
+            border-radius: 8px;
+            color: white;
+            font-weight: 500;
+            z-index: 1000;
+            animation: slideIn 0.3s ease;
+        }
+
+        .notification.success {
+            background: #28a745;
+        }
+
+        .notification.error {
+            background: #dc3545;
+        }
+
+        .notification.warning {
+            background: #ffc107;
+            color: #000;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateX(100%);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .login-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+
+        .login-box {
+            background: white;
+            padding: 3rem;
+            border-radius: 15px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            max-width: 400px;
+            width: 90%;
+        }
+
+        .login-title {
+            text-align: center;
+            margin-bottom: 2rem;
+            color: #333;
+            font-size: 1.8rem;
+        }
+
+        /* Gallery Styles */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1rem;
+        }
+
+        .gallery-item {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .gallery-item:hover {
+            transform: translateY(-5px);
+        }
+
+        .gallery-media {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .gallery-info {
+            padding: 1rem;
+            position: relative;
+        }
+
+        .gallery-item-overlay {
+            position: absolute;
+            top: 0.5rem;
+            right: 0.5rem;
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .btn-edit, .btn-delete {
+            width: 30px;
+            height: 30px;
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8rem;
+            transition: all 0.3s ease;
+        }
+
+        .btn-edit {
+            background: #007bff;
+            color: white;
+        }
+
+        .btn-edit:hover {
+            background: #0056b3;
+            transform: scale(1.1);
+        }
+
+        .btn-delete {
+            background: #dc3545;
+            color: white;
+        }
+
+        .btn-delete:hover {
+            background: #c82333;
+            transform: scale(1.1);
+        }
+
+        .gallery-item-title {
+            margin: 0 0 0.5rem 0;
+            font-size: 1rem;
+            font-weight: 600;
+            color: #333;
+        }
+
+        .gallery-item-description {
+            margin: 0 0 0.5rem 0;
+            font-size: 0.85rem;
+            color: #666;
+            line-height: 1.4;
+        }
+
+        .gallery-item-date {
+            color: #999;
+            font-size: 0.75rem;
+        }
+
+        /* Modal styles */
+        .modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.5);
+            z-index: 10000;
+            display: none;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-content {
+            background: white;
+            border-radius: 10px;
+            max-width: 90%;
+            max-height: 90%;
+            overflow-y: auto;
+        }
+
+        .modal-header {
+            padding: 1.5rem;
+            border-bottom: 1px solid #eee;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .modal-header h3 {
+            margin: 0;
+            color: #333;
+        }
+
+        .modal-header .close {
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: #999;
+            border: none;
+            background: none;
+        }
+
+        .modal-header .close:hover {
+            color: #333;
+        }
+
+        .modal-body {
+            padding: 1.5rem;
+        }
+
+        .btn-secondary {
+            background: #6c757d;
+            color: white;
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            transition: background 0.3s ease;
+        }
+
+        .btn-secondary:hover {
+            background: #5a6268;
+        }
+
+        .gallery-info h4 {
+            margin: 0 0 0.5rem 0;
+            color: #333;
+            font-size: 1.1rem;
+        }
+
+        .gallery-info p {
+            margin: 0;
+            color: #666;
+            font-size: 0.9rem;
+            line-height: 1.4;
+        }
+
+        .gallery-actions {
+            padding: 0 1rem 1rem 1rem;
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .media-preview {
+            border: 2px dashed #ddd;
+            border-radius: 8px;
+            padding: 1rem;
+            margin-top: 1rem;
+            text-align: center;
+            min-height: 200px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .media-preview img,
+        .media-preview video {
+            max-width: 100%;
+            max-height: 200px;
+            border-radius: 8px;
+        }
+
+        .help-text {
+            color: #666;
+            font-size: 0.85rem;
+            margin-top: 0.5rem;
+            display: block;
+        }
+
+        @media (max-width: 768px) {
+            .nav-container {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .products-list {
+                grid-template-columns: 1fr;
+            }
+
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .gallery-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Login Screen -->
+    <div id="login-screen" class="login-container">
+        <div class="login-box">
+            <h2 class="login-title">
+                <i class="fas fa-shield-alt"></i> Panel de Administrador
+            </h2>
+            <form id="login-form">
+                <div class="form-group">
+                    <label for="admin-password">Contraseña de Administrador:</label>
+                    <input type="password" id="admin-password" placeholder="Ingresa tu contraseña" required>
+                </div>
+                <button type="submit" class="btn-primary" style="width: 100%;">
+                    <i class="fas fa-sign-in-alt"></i> Ingresar
+                </button>
+                
+                <!-- Botón de emergencia para resetear contraseña -->
+                <button type="button" onclick="resetPassword()" style="width: 100%; background: #dc3545; color: white; border: none; padding: 1rem; border-radius: 8px; margin-top: 1rem; cursor: pointer;">
+                    <i class="fas fa-key"></i> ¿Olvidaste la contraseña? Resetear
+                </button>
+            </form>
+            <p style="text-align: center; margin-top: 1rem; color: #666; font-size: 0.9rem;">
+                Si olvidaste la contraseña, usa el botón de reseteo
+            </p>
+        </div>
+    </div>
+
+    <!-- Admin Panel -->
+    <div id="admin-panel" style="display: none;">
+        <!-- Header -->
+        <header class="admin-header">
+            <h1><i class="fas fa-cogs"></i> Panel de Administrador</h1>
+            <p>Gestiona tu tienda de láminas de aluminio</p>
+        </header>
+
+        <!-- Navigation -->
+        <nav class="admin-nav">
+            <div class="nav-container">
+                <button class="nav-btn active" onclick="showSection('dashboard')">
+                    <i class="fas fa-chart-line"></i> Dashboard
+                </button>
+                <button class="nav-btn" onclick="showSection('products')">
+                    <i class="fas fa-box"></i> Productos
+                </button>
+                <button class="nav-btn" onclick="showSection('gallery')">
+                    <i class="fas fa-images"></i> Galería
+                </button>
+                <button class="nav-btn" onclick="showSection('orders')">
+                    <i class="fas fa-clipboard-list"></i> Pedidos
+                </button>
+                <button class="nav-btn" onclick="showSection('settings')">
+                    <i class="fas fa-cog"></i> Configuración
+                </button>
+                <button class="nav-btn" onclick="logout()">
+                    <i class="fas fa-sign-out-alt"></i> Salir
+                </button>
+            </div>
+        </nav>
+
+        <div class="admin-container">
+            <!-- Dashboard Section -->
+            <section id="dashboard" class="admin-section active">
+                <h2 class="section-title">Dashboard - Resumen General</h2>
+                
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-number" id="total-products">2</div>
+                        <div class="stat-label">Productos Activos</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number" id="total-orders">0</div>
+                        <div class="stat-label">Pedidos Recibidos</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">$<span id="total-revenue">0</span></div>
+                        <div class="stat-label">Ventas Totales</div>
+                    </div>
+                </div>
+
+                <div style="background: #f8f9fa; padding: 1.5rem; border-radius: 10px;">
+                    <h3 style="margin-bottom: 1rem;"><i class="fas fa-info-circle"></i> Información Rápida</h3>
+                    <ul style="list-style: none; line-height: 2;">
+                        <li><i class="fas fa-check text-success"></i> Tu tienda está configurada para El Salvador</li>
+                        <li><i class="fas fa-check text-success"></i> WhatsApp: +503 7229-7295</li>
+                        <li><i class="fas fa-check text-success"></i> Envío gratis incluido</li>
+                        <li><i class="fas fa-check text-success"></i> Moneda: USD</li>
+                    </ul>
+                </div>
+
+                <div style="background: #e8f5e8; padding: 1.5rem; border-radius: 10px; margin-top: 1rem;">
+                    <h3 style="margin-bottom: 1rem; color: #28a745;"><i class="fas fa-university"></i> Datos Bancarios Configurados</h3>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem;">
+                        <div>
+                            <strong>🏦 Banco:</strong><br>
+                            <span>Banco Atlántida</span>
+                        </div>
+                        <div>
+                            <strong>👤 Titular:</strong><br>
+                            <span>Manuel Hernández</span>
+                        </div>
+                        <div>
+                            <strong>💰 Tipo:</strong><br>
+                            <span>Cuenta de Ahorro</span>
+                        </div>
+                        <div>
+                            <strong>🔢 Número:</strong><br>
+                            <span>2301010116949</span>
+                        </div>
+                    </div>
+                    <p style="margin-top: 1rem; font-size: 0.9rem; color: #666;">
+                        <i class="fas fa-info-circle"></i> Estos datos aparecen automáticamente en los mensajes de WhatsApp cuando los clientes eligen transferencia bancaria.
+                    </p>
+                </div>
+            </section>
+
+            <!-- Products Section -->
+            <section id="products" class="admin-section">
+                <h2 class="section-title">Gestión de Productos</h2>
+                
+                <div style="background: #e8f5e8; padding: 1rem; border-radius: 8px; margin-bottom: 2rem;">
+                    <h4 style="color: #28a745; margin-bottom: 0.5rem;">
+                        <i class="fas fa-plus-circle"></i> Agregar Nuevo Producto
+                    </h4>
+                </div>
+
+                <form id="product-form">
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="product-name">Nombre del Producto:</label>
+                            <input type="text" id="product-name" placeholder="Ej: Lámina Mediana" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="product-size">Tamaño (cm):</label>
+                            <input type="text" id="product-size" placeholder="Ej: 30x40" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="product-price">Precio (USD):</label>
+                            <input type="number" id="product-price" step="0.01" placeholder="25.00" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="product-type">Tipo de Producto:</label>
+                            <select id="product-type" required>
+                                <option value="">Seleccionar tipo</option>
+                                <option value="ready">Listo para Envío</option>
+                                <option value="custom">Personalizado</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="product-description">Descripción:</label>
+                            <input type="text" id="product-description" placeholder="Descripción del producto">
+                        </div>
+                    </div>
+                    
+                    <div class="form-group" id="image-section">
+                        <label for="product-image">Imagen del Producto:</label>
+                        <input type="file" id="product-image" accept="image/*">
+                        <div id="image-preview" class="product-image-preview">
+                            <div style="text-align: center; color: #666;">
+                                <i class="fas fa-camera" style="font-size: 2rem; margin-bottom: 0.5rem;"></i>
+                                <p>Haz clic para subir imagen</p>
+                            </div>
+                        </div>
+                        <small class="help-text">Para productos listos, la imagen es obligatoria. Para personalizados es opcional (imagen de referencia).</small>
+                    </div>
+
+                    <button type="submit" class="btn-primary">
+                        <i class="fas fa-plus"></i> Agregar Producto
+                    </button>
+                </form>
+
+                <h3 style="margin: 2rem 0 1rem 0;">Productos Existentes</h3>
+                <div id="products-list" class="products-list">
+                    <!-- Los productos se cargarán aquí -->
+                </div>
+            </section>
+
+            <!-- Gallery Section -->
+            <section id="gallery" class="admin-section">
+                <h2 class="section-title">Galería de Trabajos</h2>
+                
+                <div class="gallery-upload-section" style="background: white; padding: 2rem; border-radius: 10px; margin-bottom: 2rem;">
+                    <h3>Subir Nuevo Contenido</h3>
+                    <form id="gallery-form">
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label for="media-title">Título:</label>
+                                <input type="text" id="media-title" placeholder="Ej: Lámina personalizada de familia" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="media-type">Tipo de Contenido:</label>
+                                <select id="media-type" required>
+                                    <option value="">Seleccionar tipo</option>
+                                    <option value="image">Imagen</option>
+                                    <option value="video">Video</option>
+                                </select>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="media-description">Descripción:</label>
+                            <textarea id="media-description" placeholder="Descripción del trabajo realizado..." rows="3"></textarea>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="media-file">Archivo (Imagen/Video):</label>
+                            <input type="file" id="media-file" accept="image/jpeg,image/png,image/gif,video/mp4,video/webm,video/quicktime" required>
+                            <small style="color: #666; display: block; margin-top: 0.25rem;">
+                                📸 Imágenes: JPG, PNG, GIF | 🎥 Videos: MP4, WEBM, MOV | 📏 Máximo: 3MB
+                            </small>
+                            <div id="media-preview" class="media-preview">
+                                <div style="text-align: center; color: #666; padding: 2rem;">
+                                    <i class="fas fa-upload" style="font-size: 2rem; margin-bottom: 0.5rem;"></i>
+                                    <p>Selecciona una imagen o video</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <button type="submit" class="btn-primary">
+                            <i class="fas fa-plus"></i> Agregar a Galería
+                        </button>
+                    </form>
+                </div>
+                
+                <h3>Contenido de la Galería</h3>
+                <div id="gallery-grid" class="gallery-grid">
+                    <!-- Los elementos de la galería se cargarán aquí -->
+                </div>
+            </section>
+
+            <!-- Orders Section -->
+            <section id="orders" class="admin-section">
+                <h2 class="section-title">Gestión de Pedidos</h2>
+                
+                <div style="background: #fff3cd; padding: 1rem; border-radius: 8px; margin-bottom: 2rem;">
+                    <h4 style="color: #856404; margin-bottom: 0.5rem;">
+                        <i class="fas fa-info-circle"></i> Información sobre Pedidos
+                    </h4>
+                    <p style="color: #856404; margin: 0;">
+                        Los pedidos llegan directamente a tu WhatsApp. Aquí puedes simular y gestionar el estado de los pedidos.
+                    </p>
+                </div>
+
+                <div style="margin-bottom: 2rem;">
+                    <button class="btn-primary" onclick="simulateOrder()">
+                        <i class="fas fa-plus"></i> Simular Pedido de Prueba
+                    </button>
+                </div>
+
+                <table class="orders-table">
+                    <thead>
+                        <tr>
+                            <th>ID Pedido</th>
+                            <th>Cliente</th>
+                            <th>Productos</th>
+                            <th>Total</th>
+                            <th>Estado</th>
+                            <th>Fecha</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody id="orders-list">
+                        <tr>
+                            <td colspan="7" style="text-align: center; color: #666; padding: 2rem;">
+                                No hay pedidos registrados
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+
+            <!-- Settings Section -->
+            <section id="settings" class="admin-section">
+                <h2 class="section-title">Configuración de la Tienda</h2>
+                
+                <form id="settings-form">
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="store-name">Nombre de la Tienda:</label>
+                            <input type="text" id="store-name" value="Arte en Aluminio">
+                        </div>
+                        <div class="form-group">
+                            <label for="whatsapp-number">Número de WhatsApp:</label>
+                            <input type="text" id="whatsapp-number" value="50372297295">
+                        </div>
+                        <div class="form-group">
+                            <label for="store-email">Email de Contacto:</label>
+                            <input type="email" id="store-email" value="pedidos@artealuminio.sv">
+                        </div>
+                        <div class="form-group">
+                            <label for="store-phone">Teléfono:</label>
+                            <input type="text" id="store-phone" value="+503 7229-7295">
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="store-description">Descripción de la Tienda:</label>
+                        <textarea id="store-description" rows="3">Convierte tus fotografías en obras de arte duraderas con nuestras láminas de aluminio de alta calidad</textarea>
+                    </div>
+
+                    <!-- Datos Bancarios -->
+                    <h3 style="margin: 2rem 0 1rem 0; color: #333; border-bottom: 2px solid #28a745; padding-bottom: 0.5rem;">
+                        <i class="fas fa-university"></i> Datos Bancarios para Transferencias
+                    </h3>
+                    
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="bank-name">Nombre del Banco:</label>
+                            <input type="text" id="bank-name" value="Banco Atlántida">
+                        </div>
+                        <div class="form-group">
+                            <label for="account-holder">Titular de la Cuenta:</label>
+                            <input type="text" id="account-holder" value="Manuel Hernández">
+                        </div>
+                        <div class="form-group">
+                            <label for="account-type">Tipo de Cuenta:</label>
+                            <select id="account-type">
+                                <option value="Cuenta de Ahorro" selected>Cuenta de Ahorro</option>
+                                <option value="Cuenta Corriente">Cuenta Corriente</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="account-number">Número de Cuenta:</label>
+                            <input type="text" id="account-number" value="2301010116949">
+                        </div>
+                    </div>
+
+                    <!-- Redes Sociales -->
+                    <h3 style="margin: 2rem 0 1rem 0; color: #333; border-bottom: 2px solid #667eea; padding-bottom: 0.5rem;">
+                        <i class="fas fa-share-alt"></i> Redes Sociales
+                    </h3>
+                    
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="facebook-url">
+                                <i class="fab fa-facebook" style="color: #1877f2;"></i> Facebook:
+                            </label>
+                            <input type="url" id="facebook-url" placeholder="https://facebook.com/tu-pagina">
+                        </div>
+                        <div class="form-group">
+                            <label for="instagram-url">
+                                <i class="fab fa-instagram" style="color: #e4405f;"></i> Instagram:
+                            </label>
+                            <input type="url" id="instagram-url" placeholder="https://instagram.com/tu-perfil">
+                        </div>
+                        <div class="form-group">
+                            <label for="tiktok-url">
+                                <i class="fab fa-tiktok" style="color: #000;"></i> TikTok:
+                            </label>
+                            <input type="url" id="tiktok-url" placeholder="https://tiktok.com/@tu-perfil">
+                        </div>
+                    </div>
+
+                    <button type="submit" class="btn-primary">
+                        <i class="fas fa-save"></i> Guardar Configuración
+                    </button>
+                </form>
+
+                <div style="margin-top: 2rem; padding: 1.5rem; background: #f8d7da; border-radius: 8px;">
+                    <h4 style="color: #721c24; margin-bottom: 1rem;">
+                        <i class="fas fa-key"></i> Cambiar Contraseña de Administrador
+                    </h4>
+                    <form id="password-form">
+                        <div class="form-group">
+                            <label for="new-password">Nueva Contraseña:</label>
+                            <input type="password" id="new-password" placeholder="Mínimo 6 caracteres" required>
+                        </div>
+                        <button type="submit" class="btn-danger">
+                            <i class="fas fa-lock"></i> Cambiar Contraseña
+                        </button>
+                    </form>
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <script src="admin.js"></script>
+</body>
+</html>

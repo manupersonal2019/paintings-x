@@ -1,0 +1,1858 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Láminas de Aluminio - Arte Personalizado</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        /* Estilos CSS integrados para mejor compatibilidad local */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f8f9fa;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        .header {
+            background: linear-gradient(135deg, #2c2c2c 0%, #1a1a1a 50%, #000000 100%);
+            color: white;
+            padding: 1rem 0;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.3);
+        }
+
+        .header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+
+        .logo img {
+            width: 50px;
+            height: 50px;
+            margin-right: 15px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(192,192,192,0.3);
+        }
+
+        .logo h1 {
+            font-size: 1.8rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #ffffff 0%, #c0c0c0 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .logo i {
+            margin-right: 10px;
+            color: #ffd700;
+        }
+
+        .nav ul {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+        }
+
+        .nav a:hover {
+            background: linear-gradient(135deg, #c0c0c0 0%, #808080 100%);
+            color: #000;
+            transform: translateY(-2px);
+        }
+
+        #cart-btn {
+            background: linear-gradient(135deg, #4a4a4a 0%, #2a2a2a 100%);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            border: 1px solid #c0c0c0;
+            font-size: 0.9rem;
+            white-space: nowrap;
+            min-width: 120px;
+        }
+
+        #cart-btn:hover {
+            background: linear-gradient(135deg, #c0c0c0 0%, #a0a0a0 100%);
+            color: #000;
+            border-color: #fff;
+        }
+
+        /* Responsive para móviles */
+        @media (max-width: 768px) {
+            .nav {
+                padding: 0.5rem 1rem;
+                flex-wrap: wrap;
+                gap: 0.5rem;
+            }
+            
+            .nav a {
+                padding: 0.4rem 0.8rem;
+                font-size: 0.85rem;
+            }
+            
+            #cart-btn {
+                padding: 0.4rem 0.8rem;
+                font-size: 0.8rem;
+                min-width: 100px;
+                border-radius: 15px;
+            }
+            
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .hero p {
+                font-size: 1rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .nav {
+                justify-content: space-between;
+                padding: 0.5rem;
+            }
+            
+            .nav a {
+                padding: 0.3rem 0.6rem;
+                font-size: 0.8rem;
+            }
+            
+            #cart-btn {
+                padding: 0.3rem 0.6rem;
+                font-size: 0.75rem;
+                min-width: 90px;
+            }
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.5)), 
+                        linear-gradient(135deg, #2c2c2c 0%, #1a1a1a 50%, #000000 100%);
+            background-size: cover;
+            background-position: center;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            margin-top: 80px;
+            position: relative;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" patternUnits="userSpaceOnUse" width="2" height="2"><rect width="1" height="1" fill="%23c0c0c0" opacity="0.1"/><rect x="1" y="1" width="1" height="1" fill="%23a0a0a0" opacity="0.1"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
+            opacity: 0.3;
+            pointer-events: none;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .hero-content h2 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+            background: linear-gradient(135deg, #ffffff 0%, #c0c0c0 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-content p {
+            font-size: 1.3rem;
+            margin: 0 auto 2rem auto;
+            max-width: 600px;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+            line-height: 1.6;
+        }
+
+        .cta-btn {
+            background: linear-gradient(135deg, #e0e0e0 0%, #c0c0c0 50%, #a0a0a0 100%);
+            color: #000;
+            border: 2px solid #808080;
+            padding: 1rem 2rem;
+            font-size: 1.1rem;
+            font-weight: 600;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+            transition: left 0.5s;
+        }
+
+        .cta-btn:hover::before {
+            left: 100%;
+        }
+
+        .cta-btn:hover {
+            transform: translateY(-3px);
+            background: linear-gradient(135deg, #f0f0f0 0%, #d0d0d0 50%, #b0b0b0 100%);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+            border-color: #606060;
+        }
+
+        /* Products Section */
+        .products {
+            padding: 5rem 0;
+            background: linear-gradient(135deg, #f8f8f8 0%, #e8e8e8 100%);
+        }
+
+        .products h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            color: #2c2c2c;
+            background: linear-gradient(135deg, #404040 0%, #1a1a1a 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .product-card {
+            background: linear-gradient(135deg, #ffffff 0%, #f0f0f0 100%);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+            transition: all 0.3s ease;
+            border: 2px solid #d0d0d0;
+            position: relative;
+        }
+
+        .product-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, transparent 0%, rgba(192,192,192,0.1) 50%, transparent 100%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            pointer-events: none;
+        }
+
+        .product-card:hover::before {
+            opacity: 1;
+        }
+
+        .product-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.25);
+            border-color: #c0c0c0;
+        }
+
+        .product-image {
+            height: 200px;
+            background: linear-gradient(135deg, #e0e0e0 0%, #c0c0c0 50%, #a0a0a0 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .product-image::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="metal" patternUnits="userSpaceOnUse" width="4" height="4"><rect width="2" height="2" fill="%23d0d0d0"/><rect x="2" y="2" width="2" height="2" fill="%23d0d0d0"/><rect x="2" width="2" height="2" fill="%23c8c8c8"/><rect y="2" width="2" height="2" fill="%23c8c8c8"/></pattern></defs><rect width="100" height="100" fill="url(%23metal)"/></svg>');
+            opacity: 0.3;
+        }
+
+        .product-image i {
+            font-size: 4rem;
+            color: #404040;
+            opacity: 0.8;
+            position: relative;
+            z-index: 2;
+        }
+
+        .size-label {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: rgba(255,255,255,0.9);
+            color: #333;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        .product-info {
+            padding: 1.5rem;
+            text-align: center;
+        }
+
+        .product-info h3 {
+            font-size: 1.4rem;
+            margin-bottom: 0.5rem;
+            color: #333;
+        }
+
+        .product-info p {
+            color: #666;
+            margin-bottom: 0.5rem;
+        }
+
+        .price {
+            font-size: 1.5rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #404040 0%, #1a1a1a 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin: 1rem 0;
+        }
+
+        .add-to-cart {
+            background: linear-gradient(135deg, #d0d0d0 0%, #b0b0b0 50%, #909090 100%);
+            color: #2c2c2c;
+            border: 2px solid #808080;
+            padding: 0.8rem 2rem;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            width: 100%;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .add-to-cart::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+            transition: left 0.5s;
+        }
+
+        .add-to-cart:hover::before {
+            left: 100%;
+        }
+
+        .add-to-cart:hover {
+            background: linear-gradient(135deg, #e0e0e0 0%, #c0c0c0 50%, #a0a0a0 100%);
+            transform: translateY(-2px);
+            border-color: #606060;
+            color: #1a1a1a;
+        }
+
+        /* Gallery Styles */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+
+        .gallery-item {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+            cursor: pointer;
+        }
+
+        .gallery-item:hover {
+            transform: translateY(-5px);
+        }
+
+        .gallery-media {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .gallery-info {
+            padding: 1rem;
+        }
+
+        .gallery-item-name {
+            font-weight: 600;
+            color: #333;
+            margin: 0 0 0.5rem 0;
+            font-size: 1rem;
+        }
+
+        /* Modal para galería */
+        .gallery-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.9);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 10000;
+        }
+
+        .gallery-modal-content {
+            position: relative;
+            text-align: center;
+            max-width: 90%;
+            max-height: 90%;
+        }
+
+        .gallery-modal-close {
+            position: absolute;
+            top: -40px;
+            right: 0;
+            color: #fff;
+            font-size: 2rem;
+            cursor: pointer;
+            z-index: 10001;
+        }
+
+        .gallery-modal img,
+        .gallery-modal video {
+            max-width: 100%;
+            max-height: 80vh;
+            border-radius: 10px;
+        }
+
+        /* Modal para productos */
+        .product-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.9);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 10000;
+        }
+
+        .product-modal-content {
+            position: relative;
+            text-align: center;
+            max-width: 90%;
+            max-height: 90%;
+        }
+
+        .product-modal-close {
+            position: absolute;
+            top: -40px;
+            right: 0;
+            color: #fff;
+            font-size: 2rem;
+            cursor: pointer;
+            z-index: 10001;
+        }
+
+        .product-modal img {
+            max-width: 100%;
+            max-height: 80vh;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+
+        /* Contact Section */
+        .contact {
+            padding: 5rem 0;
+            background: linear-gradient(135deg, #2c2c2c 0%, #1a1a1a 50%, #000000 100%);
+            color: white;
+        }
+
+        .contact h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            background: linear-gradient(135deg, #ffffff 0%, #c0c0c0 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .contact-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            text-align: center;
+            justify-content: center;
+        }
+
+        .contact-item i {
+            font-size: 2rem;
+            color: #ffd700;
+        }
+
+        .contact-item h4 {
+            margin-bottom: 0.5rem;
+            font-size: 1.2rem;
+        }
+
+        /* Footer */
+        .footer {
+            background: linear-gradient(135deg, #2c2c2c 0%, #1a1a1a 50%, #000000 100%);
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+            border-top: 2px solid #c0c0c0;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+        }
+
+        .social-links a {
+            color: #c0c0c0;
+            font-size: 1.5rem;
+            transition: color 0.3s ease, transform 0.3s ease;
+            text-decoration: none;
+        }
+
+        .social-links a:hover {
+            color: #ffd700;
+            transform: scale(1.1);
+        }
+
+        .social-links .fab.fa-facebook:hover { color: #1877f2; }
+        .social-links .fab.fa-instagram:hover { color: #e4405f; }
+        .social-links .fab.fa-tiktok:hover { color: #000000; background: #ff0050; border-radius: 50%; }
+
+        /* Modal básico */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 2000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.7);
+        }
+
+        .modal-content {
+            background-color: white;
+            margin: 5% auto;
+            padding: 2rem;
+            border-radius: 15px;
+            width: 90%;
+            max-width: 600px;
+            max-height: 80vh;
+            overflow-y: auto;
+            position: relative;
+        }
+
+        .close {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            color: #666;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+            width: 30px;
+            height: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            transition: all 0.3s ease;
+        }
+
+        .close:hover {
+            background: #f0f0f0;
+            color: #333;
+            transform: scale(1.1);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header .container {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            
+            .nav ul {
+                gap: 1rem;
+            }
+
+            .hero-content h2 {
+                font-size: 2.5rem;
+            }
+            
+            .hero-content p {
+                font-size: 1.1rem;
+                padding: 0 1rem;
+            }
+            
+            .hero-content {
+                padding: 0 1rem;
+            }
+
+            .products-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Notification styles */
+        .notification {
+            position: fixed;
+            top: 100px;
+            right: 20px;
+            z-index: 3000;
+            padding: 1rem 1.5rem;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            max-width: 350px;
+        }
+
+        .success-message {
+            background: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+
+        .error-message {
+            background: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="logo">
+                <svg width="50" height="50" viewBox="0 0 100 100" style="margin-right: 15px;">
+                    <!-- Placa de aluminio -->
+                    <rect x="10" y="10" width="80" height="80" rx="8" fill="url(#aluminumGradient)" stroke="#808080" stroke-width="1"/>
+                    <!-- Textura de aluminio -->
+                    <defs>
+                        <linearGradient id="aluminumGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" style="stop-color:#f0f0f0;stop-opacity:1" />
+                            <stop offset="25%" style="stop-color:#d0d0d0;stop-opacity:1" />
+                            <stop offset="50%" style="stop-color:#c0c0c0;stop-opacity:1" />
+                            <stop offset="75%" style="stop-color:#b0b0b0;stop-opacity:1" />
+                            <stop offset="100%" style="stop-color:#a0a0a0;stop-opacity:1" />
+                        </linearGradient>
+                        <pattern id="brushTexture" patternUnits="userSpaceOnUse" width="2" height="2">
+                            <rect width="2" height="1" fill="#c8c8c8"/>
+                            <rect width="2" height="1" y="1" fill="#b8b8b8"/>
+                        </pattern>
+                    </defs>
+                    <rect x="10" y="10" width="80" height="80" rx="8" fill="url(#brushTexture)" opacity="0.3"/>
+                    <!-- X blanca pintada -->
+                    <path d="M30 30 L70 70 M70 30 L30 70" stroke="white" stroke-width="8" stroke-linecap="round" opacity="0.9"/>
+                </svg>
+                <h1>PaintingsX</h1>
+            </div>
+            <nav class="nav">
+                <ul>
+                    <li><a href="#inicio">Inicio</a></li>
+                    <li><a href="#productos">Productos</a></li>
+                    <li><a href="#contacto">Contacto</a></li>
+                    <li><a href="#" id="cart-btn"><i class="fas fa-shopping-cart"></i> Carrito (<span id="cart-count">0</span>)</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="inicio" class="hero">
+        <div class="hero-content">
+            <h2>PaintingsX - Arte en Aluminio</h2>
+            <p>Convierte tus fotografías en obras de arte duraderas con nuestras láminas de aluminio de alta calidad</p>
+            <button class="cta-btn" onclick="scrollToSection('productos')">Ver Productos</button>
+        </div>
+    </section>
+
+        <!-- Productos Section -->
+        <section id="productos" class="products">
+            <div class="container">
+                <h2>Nuestros Productos</h2>
+                <p style="text-align: center; font-size: 1.2rem; color: #666; margin-bottom: 2rem;">
+                    🚚 <strong>Envío Nacional GRATIS</strong> en toda El Salvador
+                </p>
+                
+                <!-- Productos Listos para Envío -->
+                <div id="ready-products-section" style="margin-bottom: 3rem;">
+                    <h3 style="text-align: center; color: #2c3e50; margin-bottom: 1.5rem;">
+                        <i class="fas fa-shipping-fast" style="color: #28a745;"></i>
+                        Productos Listos para Envío
+                    </h3>
+                    <p style="text-align: center; color: #666; margin-bottom: 1.5rem;">
+                        Estos productos están disponibles inmediatamente y se envían en 24-48 horas.
+                    </p>
+                    <div id="ready-products-grid" class="products-grid">
+                        <!-- Los productos listos se cargarán dinámicamente -->
+                    </div>
+                </div>
+
+                <!-- Productos Personalizados -->
+                <div id="custom-products-section">
+                    <h3 style="text-align: center; color: #2c3e50; margin-bottom: 1.5rem;">
+                        <i class="fas fa-paint-brush" style="color: #e74c3c;"></i>
+                        Productos Personalizados
+                    </h3>
+                    <p style="text-align: center; color: #666; margin-bottom: 1.5rem;">
+                        Sube tu imagen y la convertiremos en una obra de arte. Tiempo de producción: 3-5 días.
+                    </p>
+                    <div id="custom-products-grid" class="products-grid">
+                        <!-- Los productos personalizados se cargarán dinámicamente -->
+                    </div>
+                </div>
+
+                <!-- Galería de Trabajos -->
+                <div id="gallery-section" style="margin-top: 3rem;">
+                    <h3 style="text-align: center; color: #2c3e50; margin-bottom: 1.5rem;">
+                        <i class="fas fa-images" style="color: #9b59b6;"></i>
+                        Galería de Nuestros Trabajos
+                    </h3>
+                    <div id="main-gallery-grid" class="gallery-grid">
+                        <!-- La galería se cargará dinámicamente -->
+                    </div>
+                </div>
+            </div>
+        </section>    <!-- Modal del Carrito -->
+    <div id="cart-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Tu Carrito de Compras</h3>
+                <span class="close">&times;</span>
+            </div>
+            <div class="modal-body">
+                <div id="cart-items"></div>
+                <div class="cart-total">
+                    <h4>Total: $<span id="cart-total">0</span> COP</h4>
+                </div>
+                <button id="checkout-btn" class="checkout-btn">Proceder al Pago</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal de Checkout -->
+    <div id="checkout-modal" class="modal">
+        <div class="modal-content large">
+            <div class="modal-header">
+                <h3>Finalizar Pedido</h3>
+                <span class="close">&times;</span>
+            </div>
+            <div class="modal-body">
+                <form id="checkout-form">
+                    <!-- Datos Personales -->
+                    <div class="form-section">
+                        <h4>Datos Personales</h4>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="nombre">Nombre *</label>
+                                <input type="text" id="nombre" name="nombre" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="apellido">Apellido *</label>
+                                <input type="text" id="apellido" name="apellido" required>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="telefono">Teléfono *</label>
+                                <input type="tel" id="telefono" name="telefono" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="correo">Correo Electrónico *</label>
+                                <input type="email" id="correo" name="correo" required>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Dirección de Entrega -->
+                    <div class="form-section">
+                        <h4>Dirección de Entrega</h4>
+                        <div class="form-group">
+                            <label for="direccion">Dirección Completa *</label>
+                            <input type="text" id="direccion" name="direccion" placeholder="Ej: Calle 123 # 45-67" required>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="departamento">Departamento *</label>
+                                <select id="departamento" name="departamento" required>
+                                    <option value="">Selecciona un departamento</option>
+                                    <option value="Antioquia">Antioquia</option>
+                                    <option value="Atlántico">Atlántico</option>
+                                    <option value="Bogotá D.C.">Bogotá D.C.</option>
+                                    <option value="Bolívar">Bolívar</option>
+                                    <option value="Boyacá">Boyacá</option>
+                                    <option value="Caldas">Caldas</option>
+                                    <option value="Caquetá">Caquetá</option>
+                                    <option value="Casanare">Casanare</option>
+                                    <option value="Cauca">Cauca</option>
+                                    <option value="Cesar">Cesar</option>
+                                    <option value="Chocó">Chocó</option>
+                                    <option value="Córdoba">Córdoba</option>
+                                    <option value="Cundinamarca">Cundinamarca</option>
+                                    <option value="Huila">Huila</option>
+                                    <option value="La Guajira">La Guajira</option>
+                                    <option value="Magdalena">Magdalena</option>
+                                    <option value="Meta">Meta</option>
+                                    <option value="Nariño">Nariño</option>
+                                    <option value="Norte de Santander">Norte de Santander</option>
+                                    <option value="Quindío">Quindío</option>
+                                    <option value="Risaralda">Risaralda</option>
+                                    <option value="Santander">Santander</option>
+                                    <option value="Sucre">Sucre</option>
+                                    <option value="Tolima">Tolima</option>
+                                    <option value="Valle del Cauca">Valle del Cauca</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="municipio">Municipio *</label>
+                                <input type="text" id="municipio" name="municipio" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="referencia">Referencia de Ubicación</label>
+                            <textarea id="referencia" name="referencia" placeholder="Ej: Casa de color azul, al lado del supermercado"></textarea>
+                        </div>
+                    </div>
+
+                    <!-- Subir Imagen -->
+                    <div class="form-section">
+                        <h4>Subir tu Imagen</h4>
+                        <div class="form-group">
+                            <label for="imagen">Selecciona la imagen para tu lámina *</label>
+                            <input type="file" id="imagen" name="imagen" accept="image/*" required>
+                            <small>Formatos aceptados: JPG, PNG, WEBP. Tamaño máximo: 10MB</small>
+                        </div>
+                        <div id="image-preview"></div>
+                    </div>
+
+                    <!-- Método de Pago -->
+                    <div class="form-section">
+                        <h4>Método de Pago</h4>
+                        <div class="payment-methods">
+                            <label class="payment-option">
+                                <input type="radio" name="metodo_pago" value="transferencia" checked>
+                                <div class="payment-card">
+                                    <i class="fas fa-university"></i>
+                                    <span>Transferencia Bancaria</span>
+                                    <small>Recibirás los datos bancarios por correo</small>
+                                </div>
+                            </label>
+                            <label class="payment-option">
+                                <input type="radio" name="metodo_pago" value="tarjeta">
+                                <div class="payment-card">
+                                    <i class="fas fa-credit-card"></i>
+                                    <span>Tarjeta de Crédito/Débito</span>
+                                    <small>Pago seguro con Wompi</small>
+                                </div>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Resumen del Pedido -->
+                    <div class="form-section">
+                        <h4>Resumen del Pedido</h4>
+                        <div id="order-summary"></div>
+                        <div class="order-total">
+                            <h4>Total a Pagar: $<span id="final-total">0</span> COP</h4>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="submit-btn">Confirmar Pedido</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+        <!-- Contacto -->
+        <section id="contacto" class="contact">
+            <div class="container">
+                <h2>Contáctanos</h2>
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <i class="fas fa-phone"></i>
+                        <div>
+                            <h4>Teléfono</h4>
+                            <p id="contact-phone">+503 7229-7295</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-envelope"></i>
+                        <div>
+                            <h4>Email</h4>
+                            <p id="contact-email">pedidos@artealuminio.sv</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <div>
+                            <h4>Ubicación</h4>
+                            <p id="contact-location">El Salvador</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fab fa-whatsapp" style="color: #25D366;"></i>
+                        <div>
+                            <h4>WhatsApp</h4>
+                            <button onclick="openWhatsApp()" style="background: #25D366; color: white; border: none; padding: 8px 16px; border-radius: 20px; cursor: pointer;">
+                                Chatear Ahora
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;">
+                <p>&copy; 2023 PaintingsX. Todos los derechos reservados.</p>
+                <div id="social-media-links" class="social-links">
+                    <!-- Los enlaces se cargarán dinámicamente -->
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Modal del Carrito -->
+    <div id="cart-modal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h3>Tu Carrito de Compras</h3>
+            <div id="cart-items">
+                <p style="text-align: center; color: #666; padding: 2rem;">Tu carrito está vacío</p>
+            </div>
+            <div style="text-align: center; margin: 2rem 0;">
+                <h4>Total: $<span id="cart-total">0</span> USD</h4>
+            </div>
+            <button id="checkout-btn" style="width: 100%; background: #28a745; color: white; border: none; padding: 1rem; border-radius: 10px; cursor: pointer; font-size: 1.1rem;" disabled>
+                Proceder al Pago
+            </button>
+        </div>
+    </div>
+
+                    <!-- Método de Pago -->
+                    <div style="background: #f8f9fa; padding: 1.5rem; border-radius: 10px; margin: 2rem 0;">
+                        <h4 style="margin-bottom: 1rem; color: #333;">
+                            <i class="fas fa-credit-card"></i> Método de Pago
+                        </h4>
+                        
+                        <div style="display: grid; gap: 1rem;">
+                            <!-- Transferencia Bancaria -->
+                            <label style="cursor: pointer; display: flex; align-items: center; padding: 1rem; border: 2px solid #e9ecef; border-radius: 10px; transition: all 0.3s ease;">
+                                <input type="radio" name="metodo_pago" value="transferencia" checked style="margin-right: 1rem;">
+                                <div style="flex: 1;">
+                                    <div style="display: flex; align-items: center; margin-bottom: 0.5rem;">
+                                        <i class="fas fa-university" style="font-size: 1.5rem; color: #28a745; margin-right: 0.5rem;"></i>
+                                        <strong>Transferencia Bancaria</strong>
+                                    </div>
+                                    <small style="color: #666;">
+                                        📱 Recibirás los datos bancarios automáticamente por WhatsApp<br>
+                                        🏦 Banco Atlántida - Manuel Hernández - Cuenta: 2301010116949
+                                    </small>
+                                </div>
+                            </label>
+                            
+                            <!-- Pago con Tarjeta -->
+                            <label style="cursor: pointer; display: flex; align-items: center; padding: 1rem; border: 2px solid #e9ecef; border-radius: 10px; transition: all 0.3s ease;">
+                                <input type="radio" name="metodo_pago" value="tarjeta" style="margin-right: 1rem;">
+                                <div style="flex: 1;">
+                                    <div style="display: flex; align-items: center; margin-bottom: 0.5rem;">
+                                        <i class="fas fa-credit-card" style="font-size: 1.5rem; color: #667eea; margin-right: 0.5rem;"></i>
+                                        <strong>Tarjeta de Crédito/Débito</strong>
+                                    </div>
+                                    <small style="color: #666;">
+                                        💳 Visa, Mastercard, American Express<br>
+                                        � Te contactaremos para coordinar el pago seguro
+                                    </small>
+                                </div>
+                            </label>
+                        </div>
+                        
+                        <div style="margin-top: 1rem; padding: 1rem; background: #fff3cd; border-radius: 8px;">
+                            <p style="margin: 0; font-size: 0.9rem; color: #856404;">
+                                <i class="fas fa-info-circle"></i> 
+                                <strong>Nota:</strong> Para pagos con tarjeta, te contactaremos por WhatsApp 
+                                para coordinar el proceso de forma segura.
+                            </p>
+                        </div>
+                    </div>                            </div>
+                    </div>
+
+    <!-- WhatsApp Button -->
+    <div id="whatsapp-btn" style="position: fixed; bottom: 20px; right: 20px; width: 60px; height: 60px; background: #25D366; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; z-index: 1000; box-shadow: 0 4px 12px rgba(0,0,0,0.3);">
+        <i class="fab fa-whatsapp" style="color: white; font-size: 30px;"></i>
+    </div>
+
+    <!-- JavaScript integrado -->
+    <script>
+        // Variables globales
+        var cart = [];
+        var cartTotal = 0;
+
+        // Configuración de productos (se carga desde el panel de admin)
+        var products = [
+            { size: "20x30", name: "Tamaño Pequeño", price: 20 },
+            { size: "36x56", name: "Tamaño Grande", price: 35 }
+        ];
+
+        // Cargar productos desde el panel de administrador
+        function loadProductsFromAdmin() {
+            console.log('🔍 === INICIANDO loadProductsFromAdmin ===');
+            console.log('🔍 Verificando localStorage...');
+            
+            try {
+                // Listar todas las claves de localStorage para debug
+                var allKeys = [];
+                for (var i = 0; i < localStorage.length; i++) {
+                    allKeys.push(localStorage.key(i));
+                }
+                console.log('🔑 Todas las claves en localStorage:', allKeys);
+                
+                var adminData = localStorage.getItem('laminas_main_site_data');
+                console.log('🔍 Buscando datos del admin con clave "laminas_main_site_data":', !!adminData);
+                console.log('📄 Contenido crudo:', adminData);
+                
+                if (adminData) {
+                    var data = JSON.parse(adminData);
+                    console.log('📦 Datos parseados encontrados:', data);
+                    console.log('📦 data.products:', data.products);
+                    console.log('📦 data.products.length:', data.products ? data.products.length : 'undefined');
+                    
+                    if (data.products && data.products.length > 0) {
+                        products = data.products.map(function(p) {
+                            return {
+                                size: p.size,
+                                name: p.name,
+                                price: p.price,
+                                description: p.description,
+                                image: p.image,
+                                type: p.type || 'custom',
+                                active: p.active !== false
+                            };
+                        });
+                        console.log('✅ Productos cargados:', products);
+                        console.log('✅ Total productos cargados:', products.length);
+                        updateProductsDisplay();
+                    } else {
+                        console.log('⚠️ No se encontraron productos en los datos del admin');
+                        console.log('⚠️ data.products es:', data.products);
+                    }
+                } else {
+                    console.log('❌ No se encontraron datos del admin en localStorage');
+                    console.log('❌ localStorage.getItem("laminas_main_site_data") retornó:', adminData);
+                }
+            } catch (error) {
+                console.error('❌ Error en loadProductsFromAdmin:', error);
+            }
+            
+            // Cargar galería
+            loadMainGallery();
+        }
+
+        function updateProductsDisplay() {
+            console.log('🎨 === INICIANDO updateProductsDisplay ===');
+            console.log('🎨 products array:', products);
+            console.log('🎨 products.length:', products.length);
+            
+            var readyGrid = document.getElementById('ready-products-grid');
+            var customGrid = document.getElementById('custom-products-grid');
+            var readySection = document.getElementById('ready-products-section');
+            var customSection = document.getElementById('custom-products-section');
+            
+            console.log('🎨 Elementos encontrados:');
+            console.log('  - readyGrid:', !!readyGrid);
+            console.log('  - customGrid:', !!customGrid);
+            console.log('  - readySection:', !!readySection);
+            console.log('  - customSection:', !!customSection);
+            
+            if (!readyGrid || !customGrid) {
+                console.error('❌ No se encontraron los elementos grid necesarios');
+                return;
+            }
+
+            // Separar productos por tipo con función compatible
+            var readyProducts = [];
+            var customProducts = [];
+            
+            for (var i = 0; i < products.length; i++) {
+                var p = products[i];
+                if (p.active && p.type === 'ready') {
+                    readyProducts.push(p);
+                } else if (p.active && p.type === 'custom') {
+                    customProducts.push(p);
+                }
+            }
+            
+            console.log('🎨 Productos separados:');
+            console.log('  - readyProducts:', readyProducts.length, readyProducts);
+            console.log('  - customProducts:', customProducts.length, customProducts);
+
+            // Mostrar/ocultar secciones según disponibilidad
+            readySection.style.display = readyProducts.length > 0 ? 'block' : 'none';
+            customSection.style.display = customProducts.length > 0 ? 'block' : 'none';
+
+            // Renderizar productos listos
+            readyGrid.innerHTML = '';
+            for (var i = 0; i < readyProducts.length; i++) {
+                readyGrid.appendChild(createProductCard(readyProducts[i], true));
+            }
+
+            // Renderizar productos personalizados
+            customGrid.innerHTML = '';
+            for (var j = 0; j < customProducts.length; j++) {
+                customGrid.appendChild(createProductCard(customProducts[j], false));
+            }
+
+            // Si no hay productos, mostrar mensaje
+            if (readyProducts.length === 0 && customProducts.length === 0) {
+                var message = document.createElement('div');
+                message.style.textAlign = 'center';
+                message.style.padding = '2rem';
+                message.style.color = '#666';
+                message.innerHTML = '<h3>No hay productos disponibles</h3><p>Los productos serán cargados desde el panel de administración.</p>';
+                document.querySelector('.products').appendChild(message);
+            }
+        }
+
+        function createProductCard(product, isReady) {
+            var productCard = document.createElement('div');
+            productCard.className = 'product-card';
+            
+            var imageStyle = product.image ? 
+                'background-image: url(' + product.image + '); background-size: cover; background-position: center;' : 
+                'background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);';
+
+            var typeIcon = isReady ? 
+                '<i class="fas fa-shipping-fast" style="color: #28a745;"></i>' : 
+                '<i class="fas fa-paint-brush" style="color: #e74c3c;"></i>';
+
+            var typeText = isReady ? 
+                'Listo para envío (24-48h)' : 
+                'Personalizado (3-5 días)';
+
+            var onclickAttr = '';
+            var cursorStyle = '';
+            if (isReady && product.image) {
+                cursorStyle = '; cursor: pointer;';
+                onclickAttr = ' onclick="showProductImage(\'' + product.image.replace(/'/g, '\\\'').replace(/"/g, '&quot;') + '\', \'' + product.name.replace(/'/g, '\\\'').replace(/"/g, '&quot;') + '\')"';
+            }
+
+            var imageUploadSection = '';
+            if (!isReady) {
+                imageUploadSection = '<div class="image-upload-section" style="margin: 1rem 0; padding: 1rem; border: 2px dashed #e74c3c; border-radius: 10px; background: #fef5f5;">' +
+                    '<label style="display: block; text-align: center; font-size: 0.9rem; color: #666; margin-bottom: 0.5rem;">' +
+                    '📸 Subir imágenes (requerido)' +
+                    '</label>' +
+                    '<input type="file" class="image-input" data-size="' + product.size + '" multiple accept="image/*" style="width: 100%; padding: 0.5rem; border: 1px solid #ddd; border-radius: 5px; font-size: 0.9rem;">' +
+                    '<small style="display: block; text-align: center; color: #888; margin-top: 0.5rem;">' +
+                    'Selecciona las imágenes que quieres imprimir' +
+                    '</small>' +
+                    '</div>';
+            }
+
+            productCard.innerHTML = 
+                '<div class="product-image" style="' + imageStyle + cursorStyle + '"' + onclickAttr + '>' +
+                    (product.image ? '' : '<i class="fas fa-image"></i>') +
+                    '<span class="size-label">' + product.size + ' cm</span>' +
+                '</div>' +
+                '<div class="product-info">' +
+                    '<h3>' + product.name + '</h3>' +
+                    '<p>' + product.size + ' cm</p>' +
+                    '<p class="price">$' + product.price.toFixed(2) + ' USD</p>' +
+                    '<small style="color: ' + (isReady ? '#28a745' : '#e74c3c') + '; font-weight: 600;">' +
+                        typeIcon + ' ' + typeText +
+                    '</small>' +
+                    '<small style="color: #28a745; font-weight: 600; display: block; margin-top: 0.25rem;">' +
+                        '✅ Envío GRATIS' +
+                    '</small>' +
+                    
+                    '<!-- Contador de cantidad -->' +
+                    '<div class="quantity-selector" style="display: flex; align-items: center; justify-content: center; margin: 1rem 0; gap: 10px;">' +
+                        '<button class="quantity-btn minus" data-size="' + product.size + '" style="width: 35px; height: 35px; border: 2px solid #c0c0c0; background: #f0f0f0; border-radius: 50%; cursor: pointer; font-weight: bold;">-</button>' +
+                        '<span class="quantity-display" data-size="' + product.size + '" style="min-width: 40px; text-align: center; font-weight: bold; font-size: 1.1rem;">1</span>' +
+                        '<button class="quantity-btn plus" data-size="' + product.size + '" style="width: 35px; height: 35px; border: 2px solid #c0c0c0; background: #f0f0f0; border-radius: 50%; cursor: pointer; font-weight: bold;">+</button>' +
+                    '</div>' +
+                    
+                    imageUploadSection +
+                    
+                    '<button class="add-to-cart" data-size="' + product.size + '" data-price="' + product.price + '" data-type="' + product.type + '">Agregar al Carrito</button>' +
+                '</div>';
+
+            // Configurar event listeners para este producto
+            setupProductEventListeners(productCard, product);
+
+            return productCard;
+        }
+
+        function loadMainGallery() {
+            var gallery = JSON.parse(localStorage.getItem('paintingsxGallery') || '[]');
+            var galleryGrid = document.getElementById('main-gallery-grid');
+            var gallerySection = document.getElementById('gallery-section');
+            
+            if (!galleryGrid) return;
+            
+            if (gallery.length === 0) {
+                gallerySection.style.display = 'none';
+                return;
+            }
+            
+            gallerySection.style.display = 'block';
+            var galleryHTML = '';
+            for (var i = 0; i < gallery.length; i++) {
+                var item = gallery[i];
+                var mediaHTML = '';
+                if (item.type === 'image') {
+                    mediaHTML = '<img src="' + item.url + '" alt="' + (item.title || 'Imagen') + '" class="gallery-media">';
+                } else {
+                    mediaHTML = '<video src="' + item.url + '" class="gallery-media" muted>' +
+                               '<source src="' + item.url + '" type="video/mp4">' +
+                               'Tu navegador no soporta videos.' +
+                               '</video>';
+                }
+                
+                var descriptionHTML = item.description ? 
+                    '<p style="color: #666; font-size: 0.9rem; margin: 0; line-height: 1.4;">' + item.description + '</p>' : 
+                    '';
+                
+                galleryHTML += '<div class="gallery-item" onclick="viewMainGalleryItem(\'' + item.id + '\')">' +
+                              mediaHTML +
+                              '<div class="gallery-info">' +
+                                  '<h4 class="gallery-item-name">' + (item.title || 'Sin título') + '</h4>' +
+                                  descriptionHTML +
+                              '</div>' +
+                              '</div>';
+            }
+            galleryGrid.innerHTML = galleryHTML;
+        }
+
+        function viewMainGalleryItem(itemId) {
+            var gallery = JSON.parse(localStorage.getItem('paintingsxGallery') || '[]');
+            var item = null;
+            for (var i = 0; i < gallery.length; i++) {
+                if (gallery[i].id == itemId) {
+                    item = gallery[i];
+                    break;
+                }
+            }
+            
+            if (!item) return;
+            
+            // Crear modal para visualizar
+            var modal = document.createElement('div');
+            modal.className = 'gallery-modal';
+            
+            var mediaHTML = '';
+            if (item.type === 'image') {
+                mediaHTML = '<img src="' + item.url + '" alt="' + (item.title || 'Imagen') + '" style="max-width: 90%; max-height: 90%; object-fit: contain;">';
+            } else {
+                mediaHTML = '<video src="' + item.url + '" controls style="max-width: 90%; max-height: 90%; object-fit: contain;">' +
+                           '<source src="' + item.url + '" type="video/mp4">' +
+                           'Tu navegador no soporta videos.' +
+                           '</video>';
+            }
+            
+            var descriptionHTML = item.description ? 
+                '<p style="margin: 0; opacity: 0.8; line-height: 1.5;">' + item.description + '</p>' : 
+                '';
+            
+            modal.innerHTML = '<div class="gallery-modal-content">' +
+                                '<span class="gallery-modal-close" onclick="this.parentElement.parentElement.remove()">&times;</span>' +
+                                mediaHTML +
+                                '<div style="text-align: center; margin-top: 1rem; color: #fff; max-width: 500px;">' +
+                                    '<h3 style="margin: 0 0 0.5rem 0;">' + (item.title || 'Sin título') + '</h3>' +
+                                    descriptionHTML +
+                                '</div>' +
+                              '</div>';
+            
+            // Cerrar modal al hacer click fuera
+            modal.addEventListener('click', function(e) {
+                if (e.target === modal) {
+                    modal.remove();
+                }
+            });
+            
+            document.body.appendChild(modal);
+        }
+
+        // Configurar event listeners para un producto específico
+        function setupProductEventListeners(productCard, product) {
+            var size = product.size;
+            var price = product.price;
+            
+            // Botón agregar al carrito
+            var addToCartBtn = productCard.querySelector('.add-to-cart');
+            if (addToCartBtn) {
+                addToCartBtn.addEventListener('click', function() {
+                    var quantity = parseInt(productCard.querySelector('.quantity-display').textContent);
+                    var imageInput = productCard.querySelector('.image-input');
+                    var selectedImages = imageInput ? imageInput.files : null;
+                    
+                    addToCart(size, price, quantity, selectedImages);
+                });
+            }
+            
+            // Botones de cantidad
+            var minusBtn = productCard.querySelector('.quantity-btn.minus');
+            var plusBtn = productCard.querySelector('.quantity-btn.plus');
+            var quantityDisplay = productCard.querySelector('.quantity-display');
+            
+            if (minusBtn) {
+                minusBtn.addEventListener('click', function() {
+                    var quantity = parseInt(quantityDisplay.textContent);
+                    if (quantity > 1) {
+                        quantity--;
+                        quantityDisplay.textContent = quantity;
+                    }
+                });
+            }
+            
+            if (plusBtn) {
+                plusBtn.addEventListener('click', function() {
+                    var quantity = parseInt(quantityDisplay.textContent);
+                    quantity++;
+                    quantityDisplay.textContent = quantity;
+                });
+            }
+            
+            // Input de imágenes (solo para productos personalizados)
+            var imageInput = productCard.querySelector('.image-input');
+            if (imageInput) {
+                imageInput.addEventListener('change', function() {
+                    var fileCount = this.files.length;
+                    var label = productCard.querySelector('.image-upload-section small');
+                    if (label) {
+                        if (fileCount > 0) {
+                            label.textContent = fileCount + ' imagen(es) seleccionada(s)';
+                            label.style.color = '#28a745';
+                        } else {
+                            label.textContent = 'Selecciona las imágenes que quieres imprimir';
+                            label.style.color = '#888';
+                        }
+                    }
+                });
+            }
+        }
+
+        // Función para mostrar imagen de producto en modal
+        function showProductImage(imageUrl, productName) {
+            var modal = document.createElement('div');
+            modal.className = 'product-modal';
+            modal.innerHTML = '<div class="product-modal-content">' +
+                                '<span class="product-modal-close" onclick="this.parentElement.parentElement.remove()">&times;</span>' +
+                                '<img src="' + imageUrl + '" alt="' + productName + '">' +
+                                '<div style="text-align: center; margin-top: 1rem; color: #fff; width: 100%; display: flex; justify-content: center;">' +
+                                    '<h3 style="margin: 0; background: rgba(0,0,0,0.7); padding: 0.5rem 1rem; border-radius: 5px;">' + productName + '</h3>' +
+                                '</div>' +
+                              '</div>';
+            
+            // Cerrar modal al hacer click fuera
+            modal.addEventListener('click', function(e) {
+                if (e.target === modal) {
+                    modal.remove();
+                }
+            });
+            
+            document.body.appendChild(modal);
+        }
+
+        // Elementos DOM
+        var cartModal, cartCount, cartItems, cartTotalElement, checkoutBtn;
+
+        // Inicialización
+        document.addEventListener('DOMContentLoaded', function() {
+            // Obtener elementos DOM
+            cartModal = document.getElementById('cart-modal');
+            cartCount = document.getElementById('cart-count');
+            cartItems = document.getElementById('cart-items');
+            cartTotalElement = document.getElementById('cart-total');
+            checkoutBtn = document.getElementById('checkout-btn');
+
+            // Cargar productos desde el admin
+            loadProductsFromAdmin();
+
+            // Cargar galería
+            loadMainGallery();
+
+            // Cargar información de contacto
+            loadContactInfo();
+
+            // Cargar redes sociales
+            loadSocialMediaLinks();
+
+            // Event listeners
+            initializeEventListeners();
+            updateCartDisplay();
+        });
+
+        function initializeEventListeners() {
+            // Modal del carrito
+            document.getElementById('cart-btn').addEventListener('click', openCartModal);
+            checkoutBtn.addEventListener('click', proceedToCheckout);
+
+            // Cerrar modal
+            document.querySelector('.close').addEventListener('click', closeModal);
+
+            // WhatsApp button
+            document.getElementById('whatsapp-btn').addEventListener('click', openWhatsApp);
+
+            // Cerrar modal al hacer click fuera
+            window.addEventListener('click', function(event) {
+                if (event.target === cartModal) {
+                    closeModal();
+                }
+            });
+
+            // Smooth scroll
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        target.scrollIntoView({ behavior: 'smooth' });
+                    }
+                });
+            });
+        }
+
+        // Funciones del carrito
+        function addToCart(size, price, quantity, selectedImages) {
+            quantity = quantity || 1;
+            selectedImages = selectedImages || null;
+            
+            var existingItem = null;
+            for (var i = 0; i < cart.length; i++) {
+                if (cart[i].size === size) {
+                    existingItem = cart[i];
+                    break;
+                }
+            }
+            
+            // Procesar imágenes seleccionadas
+            var imageInfo = '';
+            if (selectedImages && selectedImages.length > 0) {
+                var imageNames = [];
+                for (var j = 0; j < selectedImages.length; j++) {
+                    imageNames.push(selectedImages[j].name);
+                }
+                imageInfo = ' (' + selectedImages.length + ' imagen(es): ' + imageNames.join(', ') + ')';
+            }
+            
+            if (existingItem) {
+                existingItem.quantity += quantity;
+                existingItem.total = existingItem.quantity * existingItem.price;
+                if (imageInfo) {
+                    existingItem.images = existingItem.images ? existingItem.images + imageInfo : imageInfo;
+                }
+            } else {
+                cart.push({
+                    size: size,
+                    price: price,
+                    quantity: quantity,
+                    total: price * quantity,
+                    images: imageInfo
+                });
+            }
+            
+            updateCartDisplay();
+            var quantityText = quantity > 1 ? ' (x' + quantity + ')' : '';
+            showNotification('Lámina ' + size + quantityText + ' agregada al carrito' + imageInfo);
+        }
+
+        function removeFromCart(size) {
+            var newCart = [];
+            for (var i = 0; i < cart.length; i++) {
+                if (cart[i].size !== size) {
+                    newCart.push(cart[i]);
+                }
+            }
+            cart = newCart;
+            updateCartDisplay();
+            showNotification('Lámina ' + size + ' removida del carrito');
+        }
+
+        function updateCartDisplay() {
+            // Actualizar contador
+            var totalItems = 0;
+            for (var i = 0; i < cart.length; i++) {
+                totalItems += cart[i].quantity;
+            }
+            cartCount.textContent = totalItems;
+            
+            // Actualizar total
+            cartTotal = 0;
+            for (var j = 0; j < cart.length; j++) {
+                cartTotal += cart[j].total;
+            }
+            cartTotalElement.textContent = formatPrice(cartTotal);
+            
+            // Actualizar lista de items
+            updateCartItems();
+            
+            // Habilitar/deshabilitar botón de checkout
+            checkoutBtn.disabled = cart.length === 0;
+        }
+
+        function updateCartItems() {
+            cartItems.innerHTML = '';
+            
+            if (cart.length === 0) {
+                cartItems.innerHTML = '<p style="text-align: center; color: #666; padding: 2rem;">Tu carrito está vacío</p>';
+                return;
+            }
+            
+            for (var i = 0; i < cart.length; i++) {
+                var item = cart[i];
+                var cartItem = document.createElement('div');
+                cartItem.style.cssText = 'display: flex; justify-content: space-between; align-items: center; padding: 1rem; border: 1px solid #e9ecef; border-radius: 10px; margin-bottom: 1rem; background: #f8f9fa;';
+                
+                var imagesInfo = item.images ? '<small style="color: #666; display: block; margin-top: 0.5rem;">' + item.images + '</small>' : '';
+                
+                cartItem.innerHTML = '<div>' +
+                        '<h4 style="margin: 0;">Lámina ' + item.size + '</h4>' +
+                        '<p style="margin: 0;">Cantidad: ' + item.quantity + '</p>' +
+                        imagesInfo +
+                    '</div>' +
+                    '<div>' +
+                        '<span style="font-weight: 700; color: #28a745;">$' + formatPrice(item.total) + '</span>' +
+                        '<button onclick="removeFromCart(\'' + item.size + '\')" style="background: #dc3545; color: white; border: none; padding: 0.3rem 0.8rem; border-radius: 5px; cursor: pointer; margin-left: 10px;">' +
+                            '<i class="fas fa-trash"></i>' +
+                        '</button>' +
+                    '</div>';
+                cartItems.appendChild(cartItem);
+            }
+        }
+
+        // Funciones de modal
+        function openCartModal() {
+            updateCartItems();
+            cartModal.style.display = 'block';
+        }
+
+        function closeModal() {
+            cartModal.style.display = 'none';
+        }
+
+        function proceedToCheckout() {
+            if (cart.length === 0) {
+                showNotification('Tu carrito está vacío', 'error');
+                return;
+            }
+            
+            // Verificar método de pago seleccionado
+            var selectedPaymentMethod = document.querySelector('input[name="metodo_pago"]:checked');
+            if (!selectedPaymentMethod) {
+                showNotification('Por favor selecciona un método de pago', 'error');
+                return;
+            }
+            
+            var paymentMethod = selectedPaymentMethod.value;
+            
+            if (paymentMethod === 'transferencia') {
+                // Generar mensaje para WhatsApp con datos bancarios
+                var orderMessage = generateBankTransferMessage();
+                var whatsappNumber = "50372297295";
+                var whatsappUrl = 'https://wa.me/' + whatsappNumber + '?text=' + encodeURIComponent(orderMessage);
+                
+                window.open(whatsappUrl, '_blank');
+                closeModal();
+                showNotification('Te estamos redirigiendo a WhatsApp para completar tu pedido');
+                
+            } else if (paymentMethod === 'tarjeta') {
+                // Procesar pago con tarjeta usando Wompi
+                processCardPayment();
+            }
+        }
+
+        function generateBankTransferMessage() {
+            var orderNumber = 'ORD-' + Date.now();
+            
+            var message = '🎨 *NUEVO PEDIDO DE LÁMINA DE ALUMINIO* 🎨\n\n';
+            message += '📋 *Número de Pedido:* ' + orderNumber + '\n\n';
+            
+            message += '🛒 *PRODUCTOS SOLICITADOS*\n';
+            for (var i = 0; i < cart.length; i++) {
+                var item = cart[i];
+                message += '• Lámina ' + item.size + ' - Cantidad: ' + item.quantity + ' - $' + formatPrice(item.total) + '\n';
+            }
+            message += '\n💰 *Total: $' + formatPrice(cartTotal) + ' USD*\n\n';
+            
+            message += '🚚 *ENVÍO GRATIS* en toda El Salvador\n\n';
+            
+            message += '💳 *DATOS PARA TRANSFERENCIA BANCARIA:*\n';
+            message += '🏦 Banco: Banco Atlántida\n';
+            message += '👤 Titular: Manuel Hernández\n';
+            message += '💰 Tipo: Cuenta de Ahorro\n';
+            message += '🔢 Número: 2301010116949\n\n';
+            
+            message += '📱 Pedido realizado desde: ' + window.location.href + '\n\n';
+            message += 'Por favor, enviaré comprobante de transferencia y mis datos completos.';
+            
+            return message;
+        }
+
+        function processCardPayment() {
+            // Mostrar modal de procesamiento
+            showNotification('Procesando pedido con pago de tarjeta...', 'success');
+            
+            // Por ahora, enviar por WhatsApp para coordinar el pago con tarjeta
+            setTimeout(function() {
+                var orderMessage = generateCardPaymentMessage();
+                var whatsappNumber = "50372297295";
+                var whatsappUrl = 'https://wa.me/' + whatsappNumber + '?text=' + encodeURIComponent(orderMessage);
+                
+                window.open(whatsappUrl, '_blank');
+                closeModal();
+                
+                showNotification('Pedido enviado. Te contactaremos para coordinar el pago con tarjeta.', 'success');
+            }, 1500);
+        }
+
+        function generateCardPaymentMessage() {
+            var orderNumber = 'ORD-' + Date.now();
+            
+            var message = '💳 *PEDIDO CON PAGO DE TARJETA* 💳\n\n';
+            message += '📋 *Número de Pedido:* ' + orderNumber + '\n\n';
+            
+            message += '🛒 *PRODUCTOS SOLICITADOS*\n';
+            for (var i = 0; i < cart.length; i++) {
+                var item = cart[i];
+                message += '• Lámina ' + item.size + ' - Cantidad: ' + item.quantity + ' - $' + formatPrice(item.total) + '\n';
+            }
+            message += '\n💰 *Total: $' + formatPrice(cartTotal) + ' USD*\n\n';
+            
+            message += '🚚 *ENVÍO GRATIS* en toda El Salvador\n\n';
+            
+            message += '💳 *MÉTODO DE PAGO PREFERIDO:* Tarjeta de Crédito/Débito\n';
+            message += '🏦 *Acepto:* Visa, MasterCard, American Express\n';
+            message += '📱 *Proceso:* Te contactaré para coordinar el pago seguro\n\n';
+            message += '📱 Pedido realizado desde: ' + window.location.href + '\n\n';
+            message += 'Por favor, coordinaremos el pago con tarjeta de forma segura por este medio.';
+            
+            return message;
+        }
+
+        function generateOrderMessage() {
+            var orderNumber = 'ORD-' + Date.now();
+            
+            var message = '🎨 *NUEVO PEDIDO DE LÁMINA DE ALUMINIO* 🎨\n\n';
+            message += '📋 *Número de Pedido:* ' + orderNumber + '\n\n';
+            
+            message += '🛒 *PRODUCTOS SOLICITADOS*\n';
+            for (var i = 0; i < cart.length; i++) {
+                var item = cart[i];
+                message += '• Lámina ' + item.size + ' - Cantidad: ' + item.quantity + ' - $' + formatPrice(item.total) + '\n';
+            }
+            message += '\n💰 *Total: $' + formatPrice(cartTotal) + ' USD*\n\n';
+            
+            message += '🚚 *ENVÍO GRATIS* en toda El Salvador\n\n';
+            
+            message += `💳 *DATOS PARA TRANSFERENCIA BANCARIA:*\n`;
+            message += `🏦 Banco: Banco Atlántida\n`;
+            message += `� Titular: Manuel Hernández\n`;
+            message += `💰 Tipo: Cuenta de Ahorro\n`;
+            message += `🔢 Número: 2301010116949\n\n`;
+            
+            message += `�📱 Pedido realizado desde: ${window.location.href}\n\n`;
+            message += `Por favor, enviaré comprobante de transferencia y mis datos completos.`;
+            
+            return message;
+        }
+
+        // Función de WhatsApp
+        function openWhatsApp() {
+            var message = "Hola, me interesa conocer más sobre las láminas de aluminio personalizadas. ¿Podrían darme más información?";
+            var whatsappNumber = "50372297295"; // Tu número de El Salvador
+            var whatsappUrl = 'https://wa.me/' + whatsappNumber + '?text=' + encodeURIComponent(message);
+            window.open(whatsappUrl, '_blank');
+        }
+
+        // Función para scroll suave
+        function scrollToSection(sectionId) {
+            var section = document.getElementById(sectionId);
+            if (section) {
+                var headerHeight = 80;
+                var sectionTop = section.offsetTop - headerHeight;
+                window.scrollTo({ top: sectionTop, behavior: 'smooth' });
+            }
+        }
+
+        // Funciones de utilidad
+        function formatPrice(price) {
+            return price.toFixed(2);
+        }
+
+        function showNotification(message, type) {
+            type = type || 'success';
+            // Remover notificación existente
+            var existingNotification = document.querySelector('.notification');
+            if (existingNotification) {
+                existingNotification.remove();
+            }
+            
+            var notification = document.createElement('div');
+            notification.className = 'notification ' + (type === 'error' ? 'error-message' : 'success-message');
+            notification.textContent = message;
+            
+            document.body.appendChild(notification);
+            
+            // Auto remover después de 4 segundos
+            setTimeout(function() {
+                notification.remove();
+            }, 4000);
+        }
+
+        function loadSocialMediaLinks() {
+            var socialMedia = JSON.parse(localStorage.getItem('paintingsxSocialMedia') || '{}');
+            var socialLinksContainer = document.getElementById('social-media-links');
+            
+            if (!socialLinksContainer) return;
+            
+            var socialHTML = '';
+            
+            if (socialMedia.facebook) {
+                socialHTML += '<a href="' + socialMedia.facebook + '" target="_blank" title="Síguenos en Facebook">' +
+                    '<i class="fab fa-facebook"></i>' +
+                '</a>';
+            }
+            
+            if (socialMedia.instagram) {
+                socialHTML += '<a href="' + socialMedia.instagram + '" target="_blank" title="Síguenos en Instagram">' +
+                    '<i class="fab fa-instagram"></i>' +
+                '</a>';
+            }
+            
+            if (socialMedia.tiktok) {
+                socialHTML += '<a href="' + socialMedia.tiktok + '" target="_blank" title="Síguenos en TikTok">' +
+                    '<i class="fab fa-tiktok"></i>' +
+                '</a>';
+            }
+            
+            socialLinksContainer.innerHTML = socialHTML;
+        }
+
+        function loadContactInfo() {
+            console.log('🔄 Cargando información de contacto...');
+            var adminData = localStorage.getItem('laminas_main_site_data');
+            
+            if (adminData) {
+                var data = JSON.parse(adminData);
+                console.log('📞 Configuración encontrada:', data.settings);
+                
+                if (data.settings) {
+                    var settings = data.settings;
+                    
+                    // Actualizar teléfono
+                    if (settings.phone) {
+                        var phoneElement = document.getElementById('contact-phone');
+                        if (phoneElement) {
+                            phoneElement.textContent = settings.phone;
+                            console.log('📞 Teléfono actualizado:', settings.phone);
+                        }
+                    }
+                    
+                    // Actualizar email
+                    if (settings.email) {
+                        var emailElement = document.getElementById('contact-email');
+                        if (emailElement) {
+                            emailElement.textContent = settings.email;
+                            console.log('✉️ Email actualizado:', settings.email);
+                        }
+                    }
+                    
+                    // Actualizar WhatsApp number si existe
+                    if (settings.whatsappNumber) {
+                        console.log('📱 WhatsApp actualizado:', settings.whatsappNumber);
+                        // El botón de WhatsApp ya usa la función openWhatsApp()
+                    }
+                }
+            } else {
+                console.log('❌ No se encontraron datos de configuración');
+            }
+        }
+
+        // Hacer funciones disponibles globalmente
+        window.removeFromCart = removeFromCart;
+        window.scrollToSection = scrollToSection;
+        window.viewMainGalleryItem = viewMainGalleryItem;
+    </script>
+</body>
+</html>
